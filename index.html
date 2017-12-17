@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <img src="cat.jpg" alt="" class = "cat_image">
+  <label for="" class = "cat_count">0</label>
+  <script>
+    let oImg = document.querySelector('.cat_image')
+    let cat_count = document.querySelector('.cat_count')
+    let count = 0
+    oImg.addEventListener("click",function(){
+      cat_count.innerText = ++count
+    })
+  </script>
+</body>
+</html>
