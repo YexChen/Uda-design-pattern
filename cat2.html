@@ -23,10 +23,16 @@
   <script>
     //define signal params
     var showArea = document.querySelector('.cat_show')
+    var catList = document.querySelector('.cat_list')
 
     //regist table, store regist message
     var registTable = {
-      Cats : []
+      Cats : [],
+      addCat : function(cat){
+        this.Cats.push(cat)
+        // list re-render
+        new List(cat.name,cat.instance)
+      }
     }
 
 
@@ -39,6 +45,28 @@
       }
     })()
 
+    //list object
+    function List(name,reactObject){
+      this.name = name
+      this.reactObject = reactObject
+      this.init()
+    }
+
+    List.prototype.init = function(){
+      this.dom = document.createElement("li")
+      this.dom.innerText = this.name
+      catList.appendChild(this.dom)
+      this.bindEvent()
+    }
+
+    List.prototype.bindEvent = function(){
+      //save this
+      var _this = this
+      this.dom.addEventListener("click",function(){
+        _this.reactObject.render()
+      })
+    }
+    //cat object
     function Cat(name,image){
       this.name = name
       this.image = image
@@ -58,15 +86,19 @@
       //render dom when image loaded
       this.imageDom.src = this.image
       this.imageDom.onload = function(){
-        //clear prev cat
-        documentUtils.clearCat()
-        //render
-        showArea.appendChild(_this.nameDom)
-        showArea.appendChild(_this.imageDom)
-        showArea.appendChild(_this.countsDom)
-        _this.bindEvent()
-        _this.regist()
+        // _this.render()
       }
+      _this.regist()
+    }
+
+    Cat.prototype.render = function(){
+      //clear prev cat
+      documentUtils.clearCat()
+      //render
+      showArea.appendChild(this.nameDom)
+      showArea.appendChild(this.imageDom)
+      showArea.appendChild(this.countsDom)
+      this.bindEvent()
     }
 
     Cat.prototype.bindEvent = function(){
@@ -81,14 +113,17 @@
     Cat.prototype.regist = function(){
       var newCat = {
         name : this.name,
-
+        instance : this
       }
-      registTable.Cats.push()
+      registTable.addCat(newCat)
     }
 
-    (function(){
+    ;(function(){
       new Cat("chocola","./cat.jpg")
       new Cat("redBeen","./cat2.jpg")
+      new Cat("miang","./miang.jpeg")
+      new Cat("musicCat","./musicCat.jpg")
+      new Cat("shortTail","./shortTail.jpg")
     })()
   </script>
 </body>
