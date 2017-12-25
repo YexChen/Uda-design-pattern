@@ -1,0 +1,26 @@
+{
+  "data" : {
+    "cat" : [
+      {
+        "cat_name" : "chocola",
+        "cat_thumb" : "./cat.jpg",
+        "counter" : 0
+      },
+      {
+        "cat_name" : "redBeen",
+        "cat_thumb" : "./cat2.jpg",
+        "counter" : 0
+      },
+      {
+        "cat_name" : "coconut",
+        "cat_thumb" : "./miang.jpeg",
+        "counter" : 0
+      },
+      {
+        "cat_name" : "justinCater",
+        "cat_thumb" : "./musicCat.jpg",
+        "counter" : 0
+      }
+    ]
+  }
+}
